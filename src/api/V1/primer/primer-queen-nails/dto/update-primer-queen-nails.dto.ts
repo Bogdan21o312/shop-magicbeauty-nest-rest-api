@@ -1,4 +1,4 @@
-export class CreateTransparentBaseDto {
+export class UpdatePrimerQueenNailsDto {
   readonly title: string
   readonly price: number
 }
