@@ -14,8 +14,9 @@ import {GelPolishesKodiService} from './gel-polishes-kodi.service';
 import {GelPolishesKodi} from "./schemas/gel-polishes-kodi";
 import {CreateGelPolishesKodiDto} from "./dto/create-gel-polishes-kodi.dto";
 import {UpdateGelPolishesKodiDto} from "./dto/update-gel-polishes-kodi.dto";
+import {GEL_POLISHES_KODI_URL} from "../config";
 
-@Controller('api/gel-polishes/gel-polishes-kodi')
+@Controller(GEL_POLISHES_KODI_URL)
 export class GelPolishesKodiController {
 
     constructor(private readonly productsService: GelPolishesKodiService) {

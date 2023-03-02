@@ -1,4 +1,4 @@
-export class UpdateGelPolishesQueenNailsDto {
+export class CreateTransparentBaseDto {
   readonly title: string
   readonly price: number
 }

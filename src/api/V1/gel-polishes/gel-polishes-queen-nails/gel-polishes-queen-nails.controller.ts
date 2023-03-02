@@ -14,8 +14,9 @@ import {GelPolishesQueenNailsService} from './gel-polishes-queen-nails.service';
 import {GelPolishesQueenNails} from "./schemas/gel-polishes-queen-nails";
 import {CreateGelPolishesQueenNailsDto} from "./dto/create-gel-polishes-queen-nails.dto";
 import {UpdateGelPolishesQueenNailsDto} from "./dto/update-gel-polishes-queen-nails.dto";
+import {GEL_POLISHES_QUEEN_NAILS_URL} from "../config";
 
-@Controller('api/gel-polishes/lamp-for-manicure')
+@Controller(GEL_POLISHES_QUEEN_NAILS_URL)
 export class GelPolishesQueenNailsController {
 
     constructor(private readonly productsService: GelPolishesQueenNailsService) {

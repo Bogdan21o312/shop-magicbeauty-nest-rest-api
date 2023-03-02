@@ -1,4 +1,4 @@
-export class CreateGelPolishesQueenNailsDto {
+export class UpdateLampForManicureDto {
   readonly title: string
   readonly price: number
 }
