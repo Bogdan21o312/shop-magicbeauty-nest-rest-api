@@ -16,6 +16,7 @@ import {CreateGelPolishesQueenNailsDto} from "./dto/create-gel-polishes-queen-na
 import {UpdateGelPolishesQueenNailsDto} from "./dto/update-gel-polishes-queen-nails.dto";
 import {GEL_POLISHES_QUEEN_NAILS_URL} from "../config";
 
+
 @Controller(GEL_POLISHES_QUEEN_NAILS_URL)
 export class GelPolishesQueenNailsController {
 
@@ -27,7 +28,7 @@ export class GelPolishesQueenNailsController {
         return this.productsService.getAll()
     }
 
-    @Get(':id')
+    @Get(`:id`)
     getOne(@Param('id') id: string): Promise<GelPolishesQueenNails> {
         return this.productsService.getById(id)
     }

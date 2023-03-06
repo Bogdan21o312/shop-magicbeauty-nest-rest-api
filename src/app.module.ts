@@ -9,7 +9,10 @@ import {TransparentBaseKodiModule, TransparentBaseQueenNailsModule} from "./api/
 import {TopKodiModule, TopQueenNailsModule} from "./api/V1/top";
 import {PrimerKodiModule, PrimerQueenNailsModule} from "./api/V1/primer";
 import {UltraBondsKodiModule, UltraBondsQueenNailsModule} from "./api/V1/ultra-bonds";
+import {UsersModule} from "./api/V1/users";
 
+// @ts-ignore
+// @ts-ignore
 @Module({
     imports: [
 
@@ -46,7 +49,11 @@ import {UltraBondsKodiModule, UltraBondsQueenNailsModule} from "./api/V1/ultra-b
         // Ultra bonds import
 
         UltraBondsKodiModule,
-        UltraBondsQueenNailsModule
+        UltraBondsQueenNailsModule,
+
+        // Users import
+
+        UsersModule
 
     ],
 
