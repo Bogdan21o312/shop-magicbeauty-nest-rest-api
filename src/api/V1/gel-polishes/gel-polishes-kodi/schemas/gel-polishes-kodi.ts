@@ -9,6 +9,12 @@ export class GelPolishesKodi {
   title: string
 
   @Prop()
+  capacity: string
+
+  @Prop()
+  name: string
+
+  @Prop()
   price: number
 }
 
