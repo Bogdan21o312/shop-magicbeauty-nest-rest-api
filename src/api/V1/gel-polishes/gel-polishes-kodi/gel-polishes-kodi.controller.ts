@@ -32,6 +32,11 @@ export class GelPolishesKodiController {
         return this.productsService.getById(id)
     }
 
+    @Get(':title')
+    getByTitle(@Param('title') title: string): Promise<GelPolishesKodi> {
+        return this.productsService.getByTitle(title)
+    }
+
     @Post()
     @HttpCode(HttpStatus.CREATED)
     @Header('Cache-Control', 'none')

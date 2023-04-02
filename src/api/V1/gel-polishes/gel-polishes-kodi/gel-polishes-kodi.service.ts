@@ -18,6 +18,10 @@ export class GelPolishesKodiService {
     return this.productModel.findById(id)
   }
 
+  async getByTitle(title: string): Promise<GelPolishesKodi> {
+    return this.productModel.findOne({title})
+  }
+
   async create(productDto: CreateGelPolishesKodiDto): Promise<GelPolishesKodi> {
     const newProduct = new this.productModel(productDto)
     return newProduct.save()

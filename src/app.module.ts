@@ -10,9 +10,8 @@ import {TopKodiModule, TopQueenNailsModule} from "./api/V1/top";
 import {PrimerKodiModule, PrimerQueenNailsModule} from "./api/V1/primer";
 import {UltraBondsKodiModule, UltraBondsQueenNailsModule} from "./api/V1/ultra-bonds";
 import {UsersModule} from "./api/V1/users";
+import {PostModule} from "./api/posts/post.module";
 
-// @ts-ignore
-// @ts-ignore
 @Module({
     imports: [
 
@@ -21,6 +20,10 @@ import {UsersModule} from "./api/V1/users";
         }),
 
         MongooseModule.forRoot(process.env.MONGOSE_URL),
+
+        // Test
+
+        PostModule,
 
         // Gel polishes import
 

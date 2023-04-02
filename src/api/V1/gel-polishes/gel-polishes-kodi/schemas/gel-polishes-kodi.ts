@@ -5,6 +5,7 @@ export type GelPolishesKodiDocument = GelPolishesKodi & Document
 
 @Schema()
 export class GelPolishesKodi {
+
   @Prop()
   title: string
 
