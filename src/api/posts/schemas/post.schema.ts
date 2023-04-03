@@ -23,11 +23,3 @@ export class Post {
 
 export const PostSchema = SchemaFactory.createForClass(Post);
 PostSchema.index({ '$**': 'text' });
-
-
-// Додамо параметри пошуку
-export class FindPostDto {
-    readonly _limit?: number;
-    readonly _page?: number;
-    readonly _search?: string;
-}
