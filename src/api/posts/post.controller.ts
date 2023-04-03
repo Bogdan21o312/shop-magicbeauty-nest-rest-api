@@ -1,28 +1,39 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
-import { CreatePostDto } from './dto/create-post.dto';
-import {PostsService} from "./post.service";
+import { Controller, Delete, Get, Param, Put, Query, Body } from "@nestjs/common";
+import { PostService } from './post.service';
+import { Post } from './schemas/post.schema';
+import { PostDto } from "./dto/post.dto";
 
 @Controller('posts')
-export class PostsController {
-    constructor(private readonly postsService: PostsService) {}
+export class PostController {
+  constructor(private readonly postService: PostService) {}
 
-    @Post()
-    async create(@Body() createPostDto: CreatePostDto) {
-        return this.postsService.create(createPostDto);
-    }
+  @Get()
+  async findAll(
+    @Query('_limit') limit: number,
+    @Query('_page') page: number,
+    @Query('_search') search: string,
+  ): Promise<{ data: Post[]; total: number; limit: number; page: number }> {
+    const [data, total] = await this.postService.findAll(limit, page, search);
+    return {
+      data,
+      total,
+      limit,
+      page,
+    };
+  }
 
-    @Get()
-    async findAll(
-        @Query('page') page = 1,
-        @Query('limit') limit = 10,
-        @Query('search') search: string,
-        @Query('sort') sort: string,
-    ) {
-        return this.postsService.findAll(page, limit, search, sort);
-    }
+  @Get(':id')
+  async findById(@Param('id') id: string): Promise<Post> {
+    return await this.postService.findById(id);
+  }
 
-    @Get(':id')
-    async findOne(@Param('id') id: string) {
-        return this.postsService.findOne(id);
-    }
+  @Delete(':id')
+  async delete(@Param('id') id: string): Promise<Post> {
+    return await this.postService.delete(id);
+  }
+
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() postDto: PostDto): Promise<Post> {
+    return await this.postService.update(id, postDto);
+  }
 }
