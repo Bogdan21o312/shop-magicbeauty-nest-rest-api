@@ -11,6 +11,7 @@ import {PrimerKodiModule, PrimerQueenNailsModule} from "./api/V1/primer";
 import {UltraBondsKodiModule, UltraBondsQueenNailsModule} from "./api/V1/ultra-bonds";
 import {UsersModule} from "./api/V1/users";
 import {PostModule} from "./api/posts/post.module";
+import { UserModule } from "./api/users/user.module";
 
 @Module({
     imports: [
@@ -20,6 +21,10 @@ import {PostModule} from "./api/posts/post.module";
         }),
 
         MongooseModule.forRoot(process.env.MONGOSE_URL),
+
+        //User
+
+        UserModule,
 
         // Test
 

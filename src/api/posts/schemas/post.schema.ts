@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type PostDocument = Post & Document;
+export type PostDocument = SchemaPost & Document;
 
 @Schema()
-export class Post {
+export class SchemaPost {
     @Prop({ required: true, type: String })
     title: string;
 
@@ -14,12 +14,17 @@ export class Post {
     @Prop({ type: String })
     author: string;
 
-    @Prop({ default: Date.now })
+    @Prop({ default: Date.now, immutable: true })
     created_at: Date;
 
     @Prop({ default: Date.now })
     updated_at: Date;
 }
 
-export const PostSchema = SchemaFactory.createForClass(Post);
+export const PostSchema = SchemaFactory.createForClass(SchemaPost);
 PostSchema.index({ '$**': 'text' });
+
+PostSchema.pre('findOneAndUpdate', function(next) {
+    this.set({ updated_at: new Date() });
+    next();
+});
