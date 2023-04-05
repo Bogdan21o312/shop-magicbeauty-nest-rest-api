@@ -8,4 +8,5 @@ export class UserDto {
   readonly tel?: string;
   readonly phone_number?: string;
   readonly updated_at: Date;
+  readonly userId: string;
 }

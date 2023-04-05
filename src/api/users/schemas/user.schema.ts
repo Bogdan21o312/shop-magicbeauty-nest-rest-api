@@ -29,17 +29,30 @@ export class SchemaUser {
   @Prop({ type: String })
   phone_number?: string;
 
-  @Prop({ default: Date.now, immutable: true })
-  created_at: Date;
-
-  @Prop({ default: Date.now })
-  updated_at: Date;
+  @Prop({
+    type: [
+      {
+        timestamp: { type: Date, default: Date.now },
+        field: String,
+        before: Object,
+        after: Object,
+      },
+    ],
+    default: [],
+  })
+  history: Array<{
+    timestamp: Date;
+    field: string;
+    before: Record<string, unknown>;
+    after: Record<string, unknown>;
+  }>;
 }
 
 export const UserSchema = SchemaFactory.createForClass(SchemaUser);
 UserSchema.index({ '$**': 'text' });
 
-UserSchema.pre('findOneAndUpdate', function(next) {
-  this.set({ updated_at: new Date() });
+UserSchema.pre('findOneAndUpdate', function (next) {
+  this.set({ 'history.$[].timestamp': new Date() });
   next();
 });
+
