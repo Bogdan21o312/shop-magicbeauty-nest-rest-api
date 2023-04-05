@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import * as moment from 'moment-timezone';
 
 export type UserDocument = SchemaUser & Document;
 
@@ -29,10 +30,18 @@ export class SchemaUser {
   @Prop({ type: String })
   phone_number?: string;
 
+  @Prop({ default: Date.now, immutable: true, validate: {
+      validator: function(value: Date) {
+        return moment(value).tz('Europe/Kiev').format('YYYY-MM-DD HH:mm:ss') === moment(value).tz('Europe/Kiev').format('YYYY-MM-DD HH:mm:ss');
+      },
+      message: 'Invalid date format'
+    } })
+  created_at: Date;
+
   @Prop({
     type: [
       {
-        timestamp: { type: Date, default: Date.now },
+        timestamp: { type: Date, default: moment.tz('Europe/Kiev').format('YYYY-MM-DD HH:mm:ss') },
         field: String,
         before: Object,
         after: Object,

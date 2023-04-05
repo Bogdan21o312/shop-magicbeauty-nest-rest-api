@@ -4,10 +4,12 @@ import { Model } from "mongoose";
 import { SchemaUser, UserDocument } from "./schemas/user.schema";
 import { UserDto } from "./dto/user.dto";
 
-interface HistoryItem {
-  date: Date;
-  before: Record<string, unknown>;
-  after: Record<string, unknown>;
+interface HistoryLogEntry {
+  date?: Date;
+  timestamp?: Date;
+  before?: Record<string, unknown>;
+  after?: Record<string, unknown>;
+  field?: string;
 }
 
 @Injectable()
@@ -51,14 +53,14 @@ export class UserService {
     const after = userAfterUpdate.toObject();
     delete after.history;
 
-    const logEntry: HistoryItem = {
+    const logEntry: HistoryLogEntry = {
       date: new Date(),
       before,
       after
     };
 
-    // @ts-ignore
-    userAfterUpdate.history = [...(userAfterUpdate.history || []), logEntry];
+    userAfterUpdate.history = [...(userAfterUpdate.history || []), logEntry as any];
+
     return userAfterUpdate.save();
   }
 }
