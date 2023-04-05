@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { SchemaUser, UserDocument } from "./schemas/user.schema";
-import { UserDto } from "../dto/user.dto";
+import { UserDto } from "./dto/user.dto";
 
 interface HistoryLogEntry {
   date?: Date;
