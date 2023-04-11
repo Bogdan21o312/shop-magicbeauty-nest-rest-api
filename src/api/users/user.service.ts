@@ -1,10 +1,8 @@
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { SchemaUser, UserDocument } from "./schemas/user.schema";
 import { UserDto } from "./dto/user.dto";
-import { AddRoleDto } from "./dto/add-role.dto";
-import { BanUserDto } from "./dto/ban-user.dto";
 
 interface HistoryLogEntry {
   date?: Date;
@@ -17,8 +15,9 @@ interface HistoryLogEntry {
 @Injectable()
 export class UserService {
   constructor(
-    @InjectModel(SchemaUser.name) private userModel: Model<UserDocument>,
-  ) {}
+    @InjectModel(SchemaUser.name) private userModel: Model<UserDocument>
+  ) {
+  }
 
   async findAll(limit = 10, page = 1, search = ""): Promise<[SchemaUser[], number]> {
     const skip = (page - 1) * limit;
