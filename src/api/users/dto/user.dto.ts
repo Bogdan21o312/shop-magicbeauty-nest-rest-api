@@ -1,10 +1,10 @@
 export class UserDto {
-  readonly id: string;
-  readonly email: string;
-  readonly password: string;
+  readonly id?: string;
+  readonly email?: string;
+  readonly password?: string;
   readonly banned?: boolean;
   readonly admin?: boolean;
-  readonly name: string;
+  readonly name?: string;
   readonly surname: string;
   readonly tel?: string;
   readonly phone_number?: string;

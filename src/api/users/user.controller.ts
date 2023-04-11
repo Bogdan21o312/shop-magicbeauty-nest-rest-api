@@ -2,12 +2,14 @@ import { Controller, Delete, Get, Param, Put, Query, Body, Post } from "@nestjs/
 import { UserService } from "./user.service";
 import { SchemaUser } from "./schemas/user.schema";
 import { UserDto } from "./dto/user.dto";
-
+import { AuthService } from "./auth.service";
 
 @Controller("users")
 export class UserController {
-  constructor(private readonly userService: UserService) {
-  }
+  constructor(
+    private readonly userService: UserService,
+    private readonly authService: AuthService
+  ) {}
 
   @Get()
   async findAll(
@@ -22,6 +24,16 @@ export class UserController {
       limit,
       page
     };
+  }
+
+  @Post("register")
+  async register(@Body() registerDto: UserDto): Promise<SchemaUser> {
+    return await this.authService.register(registerDto);
+  }
+
+  @Post("login")
+  async login(@Body() loginDto: UserDto): Promise<{ accessToken: string }> {
+    return await this.authService.login(loginDto);
   }
 
   @Post()

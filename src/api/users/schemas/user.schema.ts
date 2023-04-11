@@ -6,6 +6,7 @@ export type UserDocument = SchemaUser & Document;
 
 @Schema()
 export class SchemaUser {
+
   @Prop({ required: true, type: String })
   email: string;
 
@@ -15,17 +16,14 @@ export class SchemaUser {
   @Prop({ type: Boolean, default: false })
   banned?: boolean;
 
-  @Prop({ type: Boolean, default: false })
-  admin?: boolean;
+  @Prop({ required: false, type: String })
+  banReason: string;
 
   @Prop({ required: true, type: String })
   name: string;
 
   @Prop({ required: true, type: String })
   surname: string;
-
-  @Prop({ type: String })
-  tel?: string;
 
   @Prop({ type: String })
   phone_number?: string;
